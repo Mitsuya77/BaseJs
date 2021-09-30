@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Base JS</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/heroes/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="prism.css">
+<script type="text/JavaScript" src='prism.js'></script>
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="heroes.css" rel="stylesheet">
+  </head>
+  <body>
+    
+<main>
+<!------------------------------------------------- Document.getElementById ----------------------->
+  <div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Document.getElementById</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">La méthode getElementById() de Document renvoie un objet  Element représentant l'élément dont la propriété  id correspond à la chaîne de caractères spécifiée. Étant donné que les ID d'élément doivent être uniques, s'ils sont spécifiés, ils constituent un moyen utile d'accéder rapidement à un élément spécifique.
+
+        Si vous avez besoin d'accéder à un élément qui n'a pas d'ID, vous pouvez utiliser querySelector() pour trouver l'élément en utilisant un sélecteur.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center"></div>
+    <h1 class="display-5 fw-bold">Syntaxe</h1>
+        <pre><code class='language-js'>
+          var element = document.getElementById(id);
+        </code></pre>
+    </div>
+  </div>
+
+  <div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Valeur de retour</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Un objet Element décrivant l'objet élément du DOM correspondant à l'ID spécifié ou null si aucun n'a été trouvé dans le document.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center"></div>
+    <h1 class="display-5 fw-bold">Exemple</h1>
+        <pre><code class='language-js'>
+          function changeColor(newColor) {
+            var elem = document.getElementById('para');
+            elem.style.color = newColor;
+          }
+        </code></pre>
+    </div>
+  </div>
+
+  <div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Notes d'utilisation</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">L'écriture de la lettre capitale de « Id » dans le nom de cette méthode doit être respectée pour que le code fonctionne ; getElementByID() n'est pas valide et ne fonctionnera pas, même si elle semble naturelle.
+
+        Contrairement à d'autres méthodes de recherche d'éléments, comme  Document.querySelector() et Document.querySelectorAll(), getElementById est uniquement disponible comme méthode de l'objet global document et n'est pas disponible sur tous les objets du DOM. Parce que les valeurs d'ID doivent être uniques dans l'ensemble du document, il n'y pas besoin d'avoir une version "locale" de la fonction.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center"></div>
+    <h1 class="display-5 fw-bold">Exemple</h1>
+        <pre><code class='language-markup'>
+        
+
+    <div id="parent-id">
+        <p>hello word1</p>
+        <p id="test1">hello word2</p>
+        <p>hello word3</p>
+        <p>hello word4</p>
+    </div>
+    <script>
+        var parentDOM = document.getElementById('parent-id');
+        var test1=parentDOM.getElementById('test1');
+        //erreur de lancement 
+        //TypeError inattendu : parentDOM.getElementById n'est pas une fonction 
+    </script>
+        
+        </code></pre>
+    </div>
+  </div>
+<!------------------------------------------------- GetelementByClassName ----------------------->
+  <div class="b-example-divider"></div>
+
+  <div class="px-4 pt-5 my-5 text-center border-bottom">
+    <h1 class="display-5 fw-bold">getElementsByClassName</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Renvoie un objet de type tableau de tous les éléments enfants qui ont tous les noms de classe donnés. Lorsqu'il est appelé sur l'objet document, le document complet est recherché, y compris le nœud racine. Vous pouvez également appeler getElementsByClassName () sur n'importe quel élément; il retournera uniquement les éléments qui sont les descendants de l'élément racine spécifié avec les noms de classes donnés.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5"></div>
+      <h1 class="display-5 fw-bold">Syntaxe</h1>
+      <pre><code class='language-js'>
+        var elements = document.getElementsByClassName(names); // or:
+        var elements = rootElement.getElementsByClassName(names);
+      </code></pre>
+      <h1 class="display-5 fw-bold">Exemple</h1>
+      <p class="lead mb-4">Trouve tous les éléments ayant la classe « test » :</p>
+      <pre><code class='language-js'>
+        document.getElementsByClassName('test')
+      </code></pre>
+      <p class="lead mb-4">Trouve tous les éléments ayant les classes « rouge » et « test » :</p>
+      <pre><code class='language-js'>
+        document.getElementsByClassName('rouge test')
+      </code></pre>
+      <p class="lead mb-4">Trouve tous les éléments qui ont la classe « test » à l'intérieur d'un élément ayant l'ID « main » :</p>
+      <pre><code class='language-js'>
+        document.getElementById('main').getElementsByClassName('test')
+      </code></pre>
+      <p class="lead mb-4">Nous pouvons également utiliser les méthodes de Array.prototype sur toute HTMLCollection en passant HTMLCollection comme valeur de la méthode. Ici, nous allons trouver tous les éléments div qui ont une classe de 'test':</p>
+      <pre><code class='language-js'>
+        var testElements = document.getElementsByClassName('test');
+        var testDivs = Array.prototype.filter.call(testElements, function(testElement){
+            return testElement.nodeName === 'DIV';
+        });
+      </code></pre>
+    </div>
+  </div>
+<!------------------------------------------------- document.querySelector ----------------------->
+  <div class="b-example-divider"></div>
+
+  <div class="px-4 pt-5 my-5 text-center border-bottom">
+    <h1 class="display-5 fw-bold">document.querySelector</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4"> La méthode querySelector() de l'interface Document retourne le premier Element dans le document correspondant au sélecteur - ou groupe de sélecteurs - spécifié(s), ou null si aucune correspondance n'est trouvée.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5"></div>
+      <h1 class="display-5 fw-bold">Syntaxe</h1>
+      <pre><code class='language-js'>
+        element = document.querySelector(sélecteurs);
+      </code></pre>
+      <h1 class="display-5 fw-bold">Paramètres</h1>
+      <p class="lead mb-4">selectors (sélecteurs)
+        une  DOMString (chaîne de caractères) qui contient un ou plusieurs sélecteurs à comparer. La chaîne doit être composée de sélecteurs CSS valides ; sinon une exception SYNTAX_ERR est lancée. Voir Localisation des éléments DOM avec les sélecteurs pour plus d'informations sur les sélecteurs et leur gestion. </p>
+      <h1 class="display-5 fw-bold">Notes d'utilisation</h1>
+      <p class="lead mb-4">Si le sélecteur correspond à un ID et que cet ID est utilisé de façon erronée plusieurs fois dans le document, le premier élément en correspondance est retourné.
+
+        Les pseudo-éléments CSS ne retourneront jamais aucun élément, comme spécifié dans l'API des sélecteurs</p>
+      <h1 class="display-5 fw-bold">Caractère spécial d'échappement</h1>
+      <p class="lead mb-4">Pour faire correspondre un ID (identifiant) ou un sélecteur qui ne respecte pas la syntaxe CSS (en utilisant un point virgule ou un espace par exemple), vous devez échapper le caractère avec un antislash (\). Comme l'antislash est un caractère d'échappement en JavaScript, si vous entrez une chaîne de caractères littérale, vous devez donc l'échapper deux fois (une pour la chaîne de caractères JavaScript et une autre fois pour querySelector) :</p>
+      <pre><code class='language-js'>
+        <div id="machin\bidule"></div>
+        <div id="machin:bidule"></div>
+        <script>
+          console.log('#machin\bidule')               // "#machinidule" (\b est le caractère de contrôle retour arrière)
+          document.querySelector('#machin\bidule')    // ne correspond à rien
+
+          console.log('#machin\\bidule')              // "#machin\bidule"
+          console.log('#machin\\\\bidule')            // "#machin\\bidule"
+          document.querySelector('#machin\\\\bidule') // correspond au premier div
+
+          document.querySelector('#machin:bidule')    // ne correspond à rien
+          document.querySelector('#machin\\:bidule')  // correspond au second div
+        </script>
+      </code></pre>   
+      <h1 class="display-5 fw-bold">Exemples</h1>
+      <p class="lead mb-4">Trouver le premier élément correspondant à une classe</p>
+      <pre><code class='language-js'>
+        var el = document.querySelector(".maclasse");
+      </code></pre>
+      <p class="lead mb-4">Dans cet exemple, le premier élément dans le document qui contient la classe "maclasse" est retourné</p>   
+      <h1 class="display-5 fw-bold">Un sélecteur plus complexe</h1>
+      <p class="lead mb-4">Les sélecteurs peuvent également être réellement puissants comme le montre l'exemple suivant. Ici, le premier élément input name="identifiant" dans un div class="panneau-utilisateur principal" dans le document est retourné :</p>
+      <pre><code class='language-js'>
+        var el = document.querySelector("div.panneau-utilisateur.principal input[name='identifiant']");
+      </code></pre>
+    </div>
+  </div>
+<!------------------------------------------------- Document.querySelectorAll()----------------------->
+  <div class="b-example-divider"></div>
+
+  <div class="px-4 pt-5 my-5 text-center border-bottom">
+    <h1 class="display-5 fw-bold">Document.querySelectorAll()</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">La méthode querySelectorAll()  de Element renvoie une NodeList statique représentant une liste des éléments du document qui correspondent au groupe de sélecteurs spécifiés.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5"></div>
+      <h1 class="display-5 fw-bold">Syntaxe</h1>
+      <pre><code class='language-js'>
+        elementList = parentNode.querySelectorAll(selectors);
+      </code></pre>
+      <h1 class="display-5 fw-bold">Paramètres</h1>
+      <p class="lead mb-4">selecteurs
+        une DOMString (chaîne de caractères) qui contient un ou plusieurs sélecteurs CSS ; s'il n'y en a pas, une exception  SyntaxError est lancée. Voir localisation des éléments DOM avec les sélecteurs pour plus d'informations sur l'utilisation des sélecteurs en vue d'identifier les éléments. Plusieurs sélecteurs peuvent être spécifiés, séparés par une virgule.</p>
+      <p class="lead mb-4">Note : Les caractères qui ne font pas partie de la syntaxe CSS standard doivent être échappés à l'aide d'une barre oblique inverse. Puisque JavaScript utilise également l'échappement en retour arrière, un soin particulier doit être pris lors de l'écriture de littéraux de chaîne utilisant ces caractères. Voir Echapper des caractères spéciaux pour plus d'informations.</p>
+      <h1 class="display-5 fw-bold">Valeur renvoyée</h1>
+      <p class="lead mb-4">Une NodeList statique contenant un objet Element pour chaque élément qui correspond à au-moins un des sélecteurs spécifiés ou une NodeList vide si aucune correspondance n'est trouvée .</p>
+      <p class="lead mb-4">Note : Si les selectors spécifiés contiennent un pseudo-element CSS, la liste retournée sera toujours vide.</p>
+      <h1 class="display-5 fw-bold">Execptions</h1>
+      <p class="lead mb-4">SyntaxError
+        la syntaxe des chaînes selectors spécifiés n'est pas valide.</p>
+      <h1 class="display-5 fw-bold">Exemples</h1>
+      <p class="lead mb-4">Pour obtenir une NodeList (liste de noeuds) de tous les éléments p dans le document :</p>
+      <pre><code class='language-js'>
+        const matches = document.querySelectorAll("p");
+      </code></pre>
+      <p class="lead mb-4">Cet exemple renvoie la liste de tous les éléments div du document dont l'attribut de classe a pour valeur "note" ou "alert" :</p>
+      <pre><code class='language-js'>
+        const matches = document.querySelectorAll("div.note, div.alert");
+      </code></pre>
+      <p class="lead mb-4">Ici, nous obtenons une liste des éléments <p> dont l'élément parent immédiat est un div avec la classe "highlighted" et qui sont situés dans un conteneur dont l'identifiant est "test".</p>
+      <pre><code class='language-js'>
+        const container = document.querySelector("#test");
+        const matches = container.querySelectorAll("div.highlighted > p");
+      </code></pre>
+      <p class="lead mb-4">Cet exemple utilise un sélecteur d'attribut pour renvoyer une liste d'éléments iframe dans le document qui contient un attribut nommé "data-src" :</p>
+      <pre><code class='language-js'>
+        const matches = document.querySelectorAll("iframe[data-src]");
+      </code></pre>
+      <p class="lead mb-4">Ici, un sélecteur d'attribut est utilisé pour renvoyer une liste d'éléments de liste contenus dans une liste dont l'identifiant est "userlist" lequel a un attribut "data-active" dont la valeur est "1"</p>
+      <pre><code class='language-js'>
+        const container = document.querySelector("#userlist");
+        const matches = container.querySelectorAll("li[data-active='1']");
+      </code></pre>
+      <h1 class="display-5 fw-bold">Accès aux correspondances</h1>
+      <p class="lead mb-4">Une fois que la NodeList des éléments correspondants est renvoyée, vous pouvez l'examiner comme un tableau (array). Si le tableau est vide (c'est quand sa propriété length est 0), alors aucune correspondance n'a été trouvée.</p>
+      <p class="lead mb-4">Sinon, vous pouvez simplement utiliser la notation de tableau standard pour accéder au contenu de la liste. Vous pouvez utiliser n'importe quelle instruction de boucle commune, telle que :
+      <pre><code class='language-js'>
+        const highlightedItems = userList.querySelectorAll(".highlighted");
+
+        highlightedItems.forEach(function(userItem) {
+          deleteUser(userItem);
+        });
+      </code></pre>
+      </p>
+    </div>
+  </div>
+  
+
+  <div class="b-example-divider"></div>
+
+  <div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="bootstrap-themes.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold lh-1 mb-3">Responsive left-aligned hero with image</h1>
+        <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
+          <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="b-example-divider"></div>
+
+  <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1 class="display-4 fw-bold lh-1 mb-3">Vertically centered hero sign-up form</h1>
+        <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+      </div>
+      <div class="col-md-10 mx-auto col-lg-5">
+        <form class="p-4 p-md-5 border rounded-3 bg-light">
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+          </div>
+          <div class="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>
+          </div>
+          <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+          <hr class="my-4">
+          <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="b-example-divider"></div>
+
+  <div class="container my-5">
+    <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+      <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+        <h1 class="display-4 fw-bold lh-1">Border hero with cropped image and shadows</h1>
+        <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Primary</button>
+          <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+        </div>
+      </div>
+      <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
+          <img class="rounded-lg-3" src="bootstrap-docs.png" alt="" width="720">
+      </div>
+    </div>
+  </div>
+
+  <div class="b-example-divider"></div>
+
+  <div class="bg-dark text-secondary px-4 py-5 text-center">
+    <div class="py-5">
+      <h1 class="display-5 fw-bold text-white">Dark mode hero</h1>
+      <div class="col-lg-6 mx-auto">
+        <p class="fs-5 mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">Custom button</button>
+          <button type="button" class="btn btn-outline-light btn-lg px-4">Secondary</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="b-example-divider mb-0"></div>
+</main>
+
+
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+      
+  </body>
+</html>
