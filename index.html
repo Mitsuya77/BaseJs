@@ -13,7 +13,7 @@
     
 
     <!-- Bootstrap core CSS -->
-<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="prism.css">
 <script type="text/JavaScript" src='prism.js'></script>
 
@@ -79,23 +79,23 @@
         Contrairement à d'autres méthodes de recherche d'éléments, comme  Document.querySelector() et Document.querySelectorAll(), getElementById est uniquement disponible comme méthode de l'objet global document et n'est pas disponible sur tous les objets du DOM. Parce que les valeurs d'ID doivent être uniques dans l'ensemble du document, il n'y pas besoin d'avoir une version "locale" de la fonction.</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center"></div>
     <h1 class="display-5 fw-bold">Exemple</h1>
-        <pre><code class='language-markup'>
-        
-
-    <div id="parent-id">
-        <p>hello word1</p>
-        <p id="test1">hello word2</p>
-        <p>hello word3</p>
-        <p>hello word4</p>
-    </div>
-    <script>
-        var parentDOM = document.getElementById('parent-id');
-        var test1=parentDOM.getElementById('test1');
-        //erreur de lancement 
-        //TypeError inattendu : parentDOM.getElementById n'est pas une fonction 
-    </script>
-        
-        </code></pre>
+      <pre><code class='language-markup'>
+        &lt;iv id="parent-id">
+          &lt;p>hello word1&lt;/p>
+          &lt;p id="test1">hello word2&lt;/p>
+          &lt;p>hello word3&lt;/p>
+          &lt;p>hello word4&lt;/p>
+        &lt;/div>
+          </code></pre>
+        <pre><code class='language-js'>
+        &lt;script>
+            var parentDOM = document.getElementById('parent-id');
+            var test1=parentDOM.getElementById('test1');
+            //erreur de lancement 
+            //TypeError inattendu : parentDOM.getElementById n'est pas une fonction 
+        &lt;/script>
+            
+            </code></pre>
     </div>
   </div>
 <!------------------------------------------------- GetelementByClassName ----------------------->
@@ -155,9 +155,9 @@
       <h1 class="display-5 fw-bold">Caractère spécial d'échappement</h1>
       <p class="lead mb-4">Pour faire correspondre un ID (identifiant) ou un sélecteur qui ne respecte pas la syntaxe CSS (en utilisant un point virgule ou un espace par exemple), vous devez échapper le caractère avec un antislash (\). Comme l'antislash est un caractère d'échappement en JavaScript, si vous entrez une chaîne de caractères littérale, vous devez donc l'échapper deux fois (une pour la chaîne de caractères JavaScript et une autre fois pour querySelector) :</p>
       <pre><code class='language-js'>
-        <div id="machin\bidule"></div>
-        <div id="machin:bidule"></div>
-        <script>
+        &lt;div id="machin\bidule">&lt;/div>
+        &lt;div id="machin:bidule">&lt;/div>
+        &lt;script>
           console.log('#machin\bidule')               // "#machinidule" (\b est le caractère de contrôle retour arrière)
           document.querySelector('#machin\bidule')    // ne correspond à rien
 
@@ -167,7 +167,7 @@
 
           document.querySelector('#machin:bidule')    // ne correspond à rien
           document.querySelector('#machin\\:bidule')  // correspond au second div
-        </script>
+        &lt;/script>
       </code></pre>   
       <h1 class="display-5 fw-bold">Exemples</h1>
       <p class="lead mb-4">Trouver le premier élément correspondant à une classe</p>
@@ -241,90 +241,119 @@
     </div>
   </div>
   
+<!------------------------------------------------- Hover CSS----------------------->
+<div class="b-example-divider"></div>
 
-  <div class="b-example-divider"></div>
-
-  <div class="container col-xxl-8 px-4 py-5">
-    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-      <div class="col-10 col-sm-8 col-lg-6">
-        <img src="bootstrap-themes.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
-      </div>
-      <div class="col-lg-6">
-        <h1 class="display-5 fw-bold lh-1 mb-3">Responsive left-aligned hero with image</h1>
-        <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
-          <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
-        </div>
-      </div>
-    </div>
+<div class="px-4 pt-5 my-5 text-center border-bottom">
+  <h1 class="display-5 fw-bold">Hover/css</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">La pseudo-classe :hover permet de spécifier l'apparence d'un élément au moment où l'utilisateur le survole avec le pointeur, sans nécessairement l'activer.</p>
+    <pre><code class='lang-css'>
+      /* Cible n'importe quel élément 'a' lorsque  */
+        /* celui-ci est survolé */
+        a:hover {
+          background-color: gold;
+        }
+    </code></pre>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5"></div>
+    <h1 class="display-5 fw-bold">Syntaxe</h1>
+    <p class="lead mb-4">La mise en forme ciblée par cette pseudo-classe peut être surchargée par d'autres pseudo-classes relatives aux liens hypertextes comme :link, :visited, et :active, apparaissant dans des règles subséquentes. Pour décorer les liens sans effet de bord problématique, on placera la règle :hover après les règles :link et :visited mais avant la règle :active (l'ordre est  :link — :visited — :hover — :active – un moyen mnémotechnique est de se souvenir des initiales LVHA) tandis que l'ordre de la règle :focus est indifférent.</p>
+    <h1 class="display-5 fw-bold">Note :</h1>
+    <p class="lead mb-4">sur les écrans tactiles, :hover est problématique voire impossible. La pseudo-classe :hover n'est jamais valide, ou seulement pendant un très court instant après avoir touché l'élément. Puisque les appareils à écrans tactiles sont très courants, il est important que les développeurs web ne placent pas de contenu accessible seulement lors du survol, puisque ce contenu sera caché pour les utilisateurs de tels appareils.</p>
+    <h1 class="display-5 fw-bold">Syntaxe</h1>
+    <p class="lead mb-4">:hover</p>
+    <h1 class="display-5 fw-bold">Exemple</h1>
+    <p class="lead mb-4">CSS</p>
+    <pre><code class='lang-css'>
+      a:hover {
+        background-color: gold;
+      }
+    </code></pre>
+    <p class="lead mb-4">HTML</p>
+    <pre><code class="language-markup">
+      &lt;p>
+      &lt;a href ="#">Ce lien sera écrit sur un fond doré lors du survol. &lt;/a>
+      &lt;/p>
+    </pre></code>
   </div>
+</div>
+  <!------------------------------------------------- transition CSS----------------------->
+<div class="b-example-divider"></div>
 
-  <div class="b-example-divider"></div>
+<div class="px-4 pt-5 my-5 text-center border-bottom">
+  <h1 class="display-5 fw-bold">Transition</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">La propriété transition est une propriété raccourcie pour les propriétés transition-property, transition-duration, transition-timing-function et transition-delay.</p>
+    <pre><code class='lang-css'>
+      transition: margin-right 2s;
+    </code></pre>
+    <pre><code class='lang-css'>
+      transition: margin-right 2s .5s;
+    </code></pre>
+    <pre><code class='lang-css'>
+      transition: margin-right 2s ease-in-out;
+    </code></pre>
+    <pre><code class='lang-css'>
+      transition: margin-right 2s ease-in-out .5s;
+    </code></pre>
+    <pre><code class='lang-css'>
+      transition: margin-right 2s, color 1s;
+    </code></pre>
+    <pre><code class='lang-css'>
+      transition: all 1s ease-out;
+    </code></pre>
+    <p class="lead mb-4">Elle permet de définir la transition entre deux états d'un élément. Les différents états peuvent être définis à l'aide de pseudo-classes telles que :hover ou :active ou être définis dynamiquement avec JavaScript.</p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5"></div>
+    <h1 class="display-5 fw-bold">Syntaxe</h1>
+    <pre><code class='lang-css'>
+        /* S'applique à une propriété */
+        /* on a le nom et la durée */
+        transition: margin-right 4s;
 
-  <div class="container col-xl-10 col-xxl-8 px-4 py-5">
-    <div class="row align-items-center g-lg-5 py-5">
-      <div class="col-lg-7 text-center text-lg-start">
-        <h1 class="display-4 fw-bold lh-1 mb-3">Vertically centered hero sign-up form</h1>
-        <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
-      </div>
-      <div class="col-md-10 mx-auto col-lg-5">
-        <form class="p-4 p-md-5 border rounded-3 bg-light">
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
-          </div>
-          <div class="checkbox mb-3">
-            <label>
-              <input type="checkbox" value="remember-me"> Remember me
-            </label>
-          </div>
-          <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
-          <hr class="my-4">
-          <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
-        </form>
-      </div>
-    </div>
+        /* nom de la propriété | durée | retard */
+        transition: margin-right 4s 1s;
+
+        /* nom | durée | fonction */
+        transition: margin-right 4s ease-in-out;
+
+        /* nom | durée | fonction | retard */
+        transition: margin-right 4s ease-in-out 1s;
+
+        /* S'applique à deux propriétés */
+        transition: margin-right 4s, color 1s;
+
+        /* S'applique à toutes les propriétés modifiées */
+        transition: all 0.5s ease-out;
+
+        /* Valeurs globales */
+        transition: inherit;
+        transition: initial;
+        transition: unset;
+
+    </code></pre>
+    <h1 class="display-5 fw-bold">Note :</h1>
+    <p class="lead mb-4">sur les écrans tactiles, :hover est problématique voire impossible. La pseudo-classe :hover n'est jamais valide, ou seulement pendant un très court instant après avoir touché l'élément. Puisque les appareils à écrans tactiles sont très courants, il est important que les développeurs web ne placent pas de contenu accessible seulement lors du survol, puisque ce contenu sera caché pour les utilisateurs de tels appareils.</p>
+    <h1 class="display-5 fw-bold">Syntaxe</h1>
+    <p class="lead mb-4">:hover</p>
+    <h1 class="display-5 fw-bold">Exemple</h1>
+    <p class="lead mb-4">CSS</p>
+    <pre><code class='lang-css'>
+      a:hover {
+        background-color: gold;
+      }
+    </code></pre>
+    <p class="lead mb-4">HTML</p>
+    <pre><code class='language-markup'>
+      &lt;p>
+      &lt;a href ="#">Ce lien sera écrit sur un fond doré lors du survol.&lt;/a>
+      &lt;/p >
+    </pre></code>
   </div>
+</div>
 
-  <div class="b-example-divider"></div>
 
-  <div class="container my-5">
-    <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
-      <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-        <h1 class="display-4 fw-bold lh-1">Border hero with cropped image and shadows</h1>
-        <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Primary</button>
-          <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
-        </div>
-      </div>
-      <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
-          <img class="rounded-lg-3" src="bootstrap-docs.png" alt="" width="720">
-      </div>
-    </div>
-  </div>
+  
 
-  <div class="b-example-divider"></div>
-
-  <div class="bg-dark text-secondary px-4 py-5 text-center">
-    <div class="py-5">
-      <h1 class="display-5 fw-bold text-white">Dark mode hero</h1>
-      <div class="col-lg-6 mx-auto">
-        <p class="fs-5 mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">Custom button</button>
-          <button type="button" class="btn btn-outline-light btn-lg px-4">Secondary</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="b-example-divider mb-0"></div>
 </main>
 
 
