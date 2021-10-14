@@ -351,7 +351,312 @@
   </div>
 </div>
 
+<div class="b-example-divider"></div>
 
+<div class="px-4 pt-5 my-5 text-center border-bottom">
+  <h1 class="display-5 fw-bold">:nth-of-type</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">La pseudo-classe :nth-of-type() correspond à des éléments d'un type donné, en fonction de leur position au sein d'un groupe de frères et sœurs.</p>
+    <pre><code class='language-css'>
+    <p>/* Sélectionne chaque élément de type dont
+      la position parmi l'ensemble des éléments de type 
+      descendants directement du même élément parent,
+      est un multiple de 4. */
+      p:nth-of-type(4n) {
+        color: lime;
+      }
+      </p >
+    </pre></code>
+    <h1 class="display-5 fw-bold">Syntaxe</h1>
+    <p class="lead mb-4">La pseudo-classe nth-of-type ne prend qu'un argument qui représente le motif de répétition pour les éléments ciblés.
+
+      Pour une explication plus détaillée de sa syntax voir :nth-child</p>
+      <h1 class="display-5 fw-bold">Syntaxe formelle</h1>
+      <pre><code class='language-css'>
+        <p>:nth-of-type( <nth> )
+          où 
+        &lt;nth> = &lt;an-plus-b> | even | odd
+      </p >
+      </pre></code>
+      <h1 class="display-5 fw-bold">Exemple</h1>
+      <p class="lead mb-4">Dans cet exemple nous allons colorer un paragrapher sur deux avec des couleurs différentes et mettre le premier paragraphe en gras</p>
+      <p class="lead mb-4">HTML</p>
+      <pre><code class='language-markup'>
+      <p>&lt;div>
+        &lt;div>Cet élément n'est pas compté.&lt;/div>
+         &lt;p>1er paragraphe.&lt;/p>
+          &lt;p>2e paragraphe.&lt;/p>
+        &lt;div>Cet élément n'est pas compté.&lt;/div>
+          &lt;p>3e paragraphe.&lt;/p>
+          &lt;p>4e paragraphe.&lt;/p>
+      &lt;/div>
+      </p >
+      </pre></code>
+      <p class="lead mb-4">CSS</p>
+      <pre><code class='language-css'>
+      <p>/* Paragraphes impairs */
+        p:nth-of-type(2n+1) {
+          color: red;
+        }
+        
+        /* Paragraphes pairs */
+        p:nth-of-type(2n) {
+          color: blue;
+        }
+        
+        /* Premier paragraphe */
+        p:nth-of-type(1) {
+          font-weight: bold;
+        }
+        </p >
+      </pre></code>
+
+
+  
+</div>
+
+<div class="b-example-divider"></div>
+
+<div class="px-4 pt-5 my-5 text-center border-bottom">
+  <h1 class="display-5 fw-bold">:nth-child</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">La pseudo-classe :nth-child(an+b) permet de cibler un élément qui possède an+b-1 éléments voisins (au même niveau) avant lui dans l'arbre du document pour des valeurs entières n et qui possède un élément parent. Autrement dit, un sélecteur utilisant cette pseudo-classe permettra de cibler les éléments fils d'un élément dont les positions correspondent au motif an+b.</p>
+    <pre><code class='language-css'>
+    <p>/* Cible les éléments en fonction de leur position dans */
+      /* le document : ici le 4e, 8e, 16e, 20e, etc. quel que */
+      /* soit le type de l'élément */
+      body :nth-child(4n) {
+        background-color: lime;
+      }
+      
+      </p >
+    </pre></code>
+    <h1 class="display-5 fw-bold">Syntaxe</h1>
+    <p class="lead mb-4">La pseudo-classe nth-child prend un seul argument qui représente le motif de répétition des éléments ciblés.</p>
+    <h1 class="display-5 fw-bold">Valeur avec un mot-clé</h1>
+    <p class="lead mb-4">odd
+      Représente les éléments dont la position est impaire par rapport à leurs voisins.</p>
+      <p class="lead mb-4">even
+        Représente les éléments dont la position est paire par rapport à leurs voisins.</p>
+        <h1 class="display-5 fw-bold">Notation fonctionnelle</h1>
+        <p class="lead mb-4">An+B
+          Représente les éléments dont la position est la An+B-ième avec n qui parcourt les entiers à partir de 0. Les valeurs fournies pour A et B doivent être des entiers (integer).</p>
+      <h1 class="display-5 fw-bold">Syntaxe formelle</h1>
+      <pre><code class='language-markup'>
+        <p>:nth-child( <nth> [ of &lt;complex-selector-list> ]? )
+          où 
+          &lt;nth> = &lt;an-plus-b> | even | odd
+          &lt;complex-selector-list> = &lt;complex-selector>#
+          
+          où 
+          &lt;complex-selector> = &lt;compound-selector> [ &lt;combinator>? &lt;compound-selector> ]*
+          
+          où 
+          &lt;compound-selector> = [ &lt;type-selector>? &lt;subclass-selector>* [ &lt;pseudo-element-selector> &lt;pseudo-class-selector>* ]* ]!
+          <combinator> = '>' | '+' | '~' | [ '||' ]
+          
+          où 
+          &lt;type-selector> = &lt;wq-name> | &lt;ns-prefix>? '*'
+          &lt;subclass-selector> = &lt;id-selector> | &lt;class-selector> | &lt;attribute-selector> | &lt;pseudo-class-selector>
+          &lt;pseudo-element-selector> = ':' &lt;pseudo-class-selector>
+          &lt;pseudo-class-selector> = ':' &lt;ident-token> | ':' &lt;function-token> &lt;any-value> ')'
+          
+          où 
+          &lt;wq-name> = &lt;ns-prefix>? &lt;ident-token>
+          &lt;ns-prefix> = [ &lt;ident-token> | '*' ]?  | 
+          &lt;id-selector> = &lt;hash-token>
+          &lt;class-selector> = '.' &lt;ident-token>
+          &lt;attribute-selector> = '[' &lt;wq-name> ']' | '[' &lt;wq-name> &lt;attr-matcher> [ &lt;string-token> | &lt;ident-token> ] &lt;attr-modifier>? ']'
+          
+          où 
+          &lt;attr-matcher> = [ '~' |  |  | '^' | '$' | '*' ]? '='
+          &lt;attr-modifier> = i | s
+      </p >
+      </pre></code>
+      <h1 class="display-5 fw-bold">Exemple</h1>
+      <p class="lead mb-4">Exemples de sélecteurs</p>
+      <p class="lead mb-4">tr:nth-child(2n+1)
+        Permettra de cibler les lignes impaires d'un tableau.</p>
+      <p class="lead mb-4">tr:nth-child(odd)
+        Permettra de cibler les lignes impaires d'un tableau.</p>
+      <p class="lead mb-4">tr:nth-child(2n)
+        Permettra de cibler les lignes paires d'un tableau.</p>
+      <p class="lead mb-4">tr:nth-child(even)
+        Permettra de cibler les lignes paires d'un tableau.</p>
+      <p class="lead mb-4">span:nth-child(0n+1)
+        Permettra de cibler un élément 'span' qui est le premier fils de son parent. Cela aura le même effet que la pseudo-classe :first-child.</p>
+      <p class="lead mb-4">span:nth-child(1)
+        Synonyme à l'exemple précédent.</p>
+      <p class="lead mb-4">span:nth-child(-n+3)
+        Permettra de cibler un élément si celui-ci fait partie des trois premiers fils d'un parent et que c'est également un élément span.</p>
+      <h1 class="display-5 fw-bold">Exemple démonstratif</h1>
+      <p class="lead mb-4">CSS</p>
+      <pre><code class='language-css'>
+        <p>html {
+          font-family: sans-serif;
+        }
+        
+        span, div em {
+          padding: 10px;
+          border: 1px solid green;
+          display: inline-block;
+          margin-bottom: 3px;
+        }
+        
+        .premier span:nth-child(2n+1),
+        .deuxieme span:nth-child(2n+1),
+        .troisieme span:nth-of-type(2n+1) {
+          background-color: lime;
+        }
+        
+          
+          </p >
+        </pre></code>
+        <pre><code class='language-markup'>
+        <p>
+          &lt;code>span:nth-child(2n+1)&lt;/code>,
+          &lt;em>sans&lt;/em> un &lt;code>&lt;em&gt;&lt;/code>
+            parmi les éléments. Les éléments fils 1, 3,
+            5 et 7 sont sélectionnés.
+      
+          
+            &lt;div class="premier">
+              &lt;span>Ce span est sélectionné !&lt;/span>
+              &lt;span>Pas ce span ci. :(&lt;/span>
+              &lt;span>Celui-ci ?&lt;/span>
+              &lt;span>Celui-là ?&lt;/span>
+              &lt;span>Un autre exemple&lt;/span>
+              &lt;span>Et encore un&lt;/span>
+              &lt;span>Puis un dernier&lt;/span>
+            &lt;/div>
+          
+      
+          &lt;code>span:nth-child(2n+1)&lt;/code>,
+          &lt;em>avec&lt;/em> un élément &lt;code>&lt;em&gt;&lt;/code>
+            parmi les fils. Les éléments fils 1, 5,
+            et 7 sont sélectionnés. 3 est compté
+            mais n'est pas ciblé car ce n'est pas
+          &lt;code>&lt;span&gt;&lt;/code>.
+      
+          
+          &lt;div class="deuxieme">
+            &lt;span>Ce span est sélectionné !&lt;/span>
+            &lt;span>Pas ce span ci. :(=&lt;/span>
+            &lt;em>Ici on a un em.&lt;/em>
+            &lt;span>Qu'en est-il de celui-ci ?&lt;/span>
+            &lt;span>De celui-là ?&lt;/span>
+            &lt;span>Voici un autre exemple&lt;/span>
+            &lt;span>Et encore un&lt;/span>
+            &lt;span>Puis un dernier&lt;/span>
+          &lt;/div>
+          
+          
+          &lt;code>span:nth-of-type(2n+1)&lt;/code>,
+          &lt;em>avec&lt;/em> un &lt;code>&lt;em&gt;&lt;/code>
+            parmi les éléments fils. Les éléments fils
+            1, 4, 6 et 8 sont sélectionnés. 3 n'est pas
+            compté ni ciblé car c'est un &lt;code>&lt;em&gt;&lt;/code>,
+            et pas un &lt;code>&lt;span&gt;&lt;/code> et
+            &lt;code>nth-of-type&lt;/code> ne sélectionne que les
+            fils de ce type. Ce &lt;code>&lt;em&gt;&lt;/code> est
+            sauté et est ignoré.
+          
+          
+          &lt;div class="troisieme">
+            &lt;span>Ce span est sélectionné !&lt;/span>
+            &lt;span>Pas ce span ci. :(&lt;/span>
+            &lt;em>Ici on a un em.&lt;/em>
+            &lt;span>Qu'en est-il de celui-ci ?&lt;/span>
+            &lt;span>De celui-là ?&lt;/span>
+            &lt;span>Voici un autre exemple&lt;/span>
+            &lt;span>Et encore un&lt;/span>
+            &lt;span>Puis un dernier&lt;/span>
+          &lt;/div>
+          
+          
+            
+        </p >
+          </pre></code>
+      
+
+
+  
+</div>
+
+
+
+<div class="b-example-divider"></div>
+
+<div class="px-4 pt-5 my-5 text-center border-bottom">
+  <h1 class="display-5 fw-bold">Grilles CSS (CSS Grid)</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">Le module CSS Grid layout (modèle de disposition en grille) est un module de la spécification CSS qui permet de créer des mises en page en divisant l'espace d'affichage en régions utilisables par une application ou en définissant des relations de taille, position et d'empilement entre les éléments HTML.
+
+      Comme les tableaux, la grille permet d'aligner des éléments sous forme de colonnes et de lignes mais à la différence des tableaux, la grille n'a pas de structure de contenu. Ainsi, on peut créer de nombreuses mises en page qui n'auraient pas été possibles avec les tableaux. Ainsi, les éléments fils d'un conteneur en grille peuvent être positionnés afin qu'ils se chevauchent ou qu'ils se comportent comme des éléments positionnés.</p>
+      <h1 class="display-5 fw-bold">Un exemple simple</h1>
+      <p class="lead mb-4">Dans l'exemple qui suit, on montre comment utiliser une grille avec trois pistes en colonnes pour laquelle les nouvelles lignes créées mesureront au moins 100 pixels et auront au plus la taille automatique (définie par leur contenu). Les éléments sont placés sur la grille grâce aux numéros des lignes horizontales et verticales.</p>
+          
+      <p class="lead mb-4">HTML</p>
+
+    <pre><code class='language-markup'>
+    <p>&lt;div class="wrapper">
+        &lt;div class="one">Un&lt;/div>
+        &lt;div class="two">Deux&lt;/div>
+        &lt;div class="three">Trois&lt;/div>
+        &lt;div class="four">Quatre&lt;/div>
+        &lt;div class="five">Cinq&lt;/div>
+        &lt;div class="six">Six&lt;/div>
+      &lt;/div>
+    
+      
+    </p >
+    </pre></code>
+    <p class="lead mb-4">CSS</p>
+
+    <pre><code class='language-css'>
+      <p>
+        .wrapper {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-gap: 10px;
+          grid-auto-rows: minmax(100px, auto);
+        }
+        .one {
+          grid-column: 1 / 3;
+          grid-row: 1;
+        }
+        .two {
+          grid-column: 2 / 4;
+          grid-row: 1 / 3;
+        }
+        .three {
+          grid-column: 1;
+          grid-row: 2 / 5;
+        }
+        .four {
+          grid-column: 3;
+          grid-row: 3;
+        }
+        .five {
+          grid-column: 2;
+          grid-row: 4;
+        }
+        .six {
+          grid-column: 3;
+          grid-row: 4;
+        }
+        
+        
+      </p >
+      </pre></code>
+    
+  
+    
+      
+
+
+  
+</div>
   
 
 </main>
